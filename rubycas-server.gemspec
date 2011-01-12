@@ -1,7 +1,7 @@
 
 $gemspec = Gem::Specification.new do |s|
   s.name     = 'uchouhan-rubycas-server'
-  s.version  = '1.1.a'
+  s.version  = '1.2.a'
   s.authors  = ["Umang Chouhan"]
   s.email    = ["uchouhan@optimiscorp.com"]
   s.homepage = 'http://github.com/uchouhan/cas'
@@ -10,7 +10,7 @@ $gemspec = Gem::Specification.new do |s|
 
   s.files  = [
     "CHANGELOG", "LICENSE", "README.md", "Rakefile", "setup.rb",
-    "bin/*", "db/*", "lib/**/*.rb", "public/**/*", "po/**/*", "mo/**/*", "resources/*.*",
+    "bin/*", "db/**/*", "lib/**/*.rb", "public/**/*", "po/**/*", "mo/**/*", "resources/*.*",
     "tasks/**/*.rake", "vendor/**/*", "script/*", "lib/**/*.erb", "lib/**/*.builder",
     "rubycas-server.gemspec"
   ].map{|p| Dir[p]}.flatten
