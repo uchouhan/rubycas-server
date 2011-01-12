@@ -1,7 +1,7 @@
 
 $gemspec = Gem::Specification.new do |s|
   s.name     = 'uchouhan-rubycas-server'
-  s.version  = '1.0.a'
+  s.version  = '1.1.a'
   s.authors  = ["Umang Chouhan"]
   s.email    = ["uchouhan@optimiscorp.com"]
   s.homepage = 'http://github.com/uchouhan/cas'
