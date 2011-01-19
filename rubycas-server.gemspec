@@ -1,7 +1,7 @@
 
 $gemspec = Gem::Specification.new do |s|
   s.name     = 'uchouhan-rubycas-server'
-  s.version  = '1.2.a'
+  s.version  = '1.3.a'
   s.authors  = ["Umang Chouhan"]
   s.email    = ["uchouhan@optimiscorp.com"]
   s.homepage = 'http://github.com/uchouhan/cas'
@@ -37,4 +37,16 @@ to build the LOCALE_LC files.
     '--quiet', '--title', 'RubyCAS-Server Documentation', '--opname',
     'index.html', '--line-numbers', '--main', 'README.md', '--inline-source'
   ]
+
+  s.add_dependency 'activerecord', '~> 3.0.3'
+  s.add_dependency 'activesupport', '~> 3.0.3'
+  s.add_dependency 'sinatra', '~> 1.0'
+  s.add_dependency 'gettext', '~> 2.1.0'
+  s.add_dependency 'crypt-isaac', '~> 0.9.1'
+
+  s.add_development_dependency 'rack-test'
+  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec-core'
+  s.add_development_dependency 'sqlite3-ruby'
 end
