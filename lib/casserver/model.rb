@@ -19,7 +19,6 @@ module CASServer::Model
           conditions = ["created_on < ? OR (consumed IS NULL AND created_on < ?)",
                           Time.now - max_lifetime,
                           Time.now - max_unconsumed_lifetime]
-          puts all.count
           expired_tickets_count = count(:conditions => conditions)
 
           $LOG.debug("Destroying #{expired_tickets_count} expired #{self.name.demodulize}"+
@@ -64,8 +63,7 @@ module CASServer::Model
     belongs_to :granted_by_tgt,
       :class_name => 'CASServer::Model::TicketGrantingTicket',
       :foreign_key => :granted_by_tgt_id
-    has_one :proxy_granting_ticket,
-      :foreign_key => :created_by_st_id
+    has_one :proxy_granting_ticket
 
     def matches_service?(service)
       CASServer::CAS.clean_service_url(self.service) ==

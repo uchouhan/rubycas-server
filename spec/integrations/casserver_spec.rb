@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/spec_helper'
+require 'spec/spec_helper'
 
 $LOG = Logger.new(File.basename(__FILE__).gsub('.rb','.log'))
 
@@ -19,7 +19,7 @@ describe 'CASServer' do
 
   describe "/login" do
     before do
-      load_server(File.dirname(__FILE__) + "/default_config.yml")
+      load_server(File.dirname(__FILE__) + "/../support/configuration/default.yml")
       reset_spec_database
     end
 
@@ -81,7 +81,7 @@ describe 'CASServer' do
   describe '/logout' do
 
     before do
-      load_server(File.dirname(__FILE__) + "/default_config.yml")
+      load_server(File.dirname(__FILE__) + "/../support/configuration/default.yml")
       reset_spec_database
     end
 
@@ -101,7 +101,7 @@ describe 'CASServer' do
   
   describe 'Configuration' do
     it "uri_path value changes prefix of routes" do
-      load_server(File.dirname(__FILE__) + "/alt_config.yml")
+      load_server(File.dirname(__FILE__) + "/../support/configuration/alt.yml")
       @target_service = 'http://my.app.test'
       
       visit "/test/login"
