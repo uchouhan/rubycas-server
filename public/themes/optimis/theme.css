@@ -1,0 +1,47 @@
+body {
+  color: #888888;
+}
+
+#headline-container {
+  border: none !important;
+  padding-right: 20px;
+}
+
+#login-box {
+  margin: 0 auto;
+  top: 110px;
+  position: relative;
+}
+
+#login-form-container {
+  width: 35px;
+}
+
+#username-label-container, #password-label-container {
+  width: 50px;
+}
+
+#username-container, #password-container {
+  width: 200px;
+}
+
+#username-container input, #password-container input {
+  width: 200px;
+}
+
+#logo-container {
+  vertical-align: middle;
+  position: relative;
+}
+
+#logo-container img {
+  width: 200px;
+}
+
+#login-form {
+  background-color: #fff;
+}
+
+form {
+  padding: none !important;
+}

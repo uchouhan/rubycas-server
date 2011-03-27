@@ -5,6 +5,7 @@ gem 'activesupport',  '~> 3.0.0'
 gem 'sinatra',        '~> 1.0'
 gem 'gettext',        '~> 2.1.0'
 gem 'crypt-isaac',    '~> 0.9.1'
+gem 'mysql2'
 
 group :test do
   gem 'rack-test',                :require => 'rack/test'

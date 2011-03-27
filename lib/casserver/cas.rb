@@ -6,7 +6,6 @@ require 'casserver/model'
 # Encapsulates CAS functionality. This module is meant to be included in
 # the CASServer::Controllers module.
 module CASServer::CAS
-
   include CASServer::Model
 
   def generate_login_ticket
@@ -14,7 +13,7 @@ module CASServer::CAS
     lt = LoginTicket.new
     lt.ticket = "LT-" + CASServer::Utils.random_string
 
-    lt.client_hostname = @env['HTTP_X_FORWARDED_FOR'] || @env['REMOTE_HOST'] || @env['REMOTE_ADDR']
+    lt.client_hostname = hostname
     lt.save!
     $LOG.debug("Generated login ticket '#{lt.ticket}' for client" +
       " at '#{lt.client_hostname}'")
@@ -33,7 +32,7 @@ module CASServer::CAS
     tgt.ticket = "TGC-" + CASServer::Utils.random_string
     tgt.username = username
     tgt.extra_attributes = extra_attributes
-    tgt.client_hostname = @env['HTTP_X_FORWARDED_FOR'] || @env['REMOTE_HOST'] || @env['REMOTE_ADDR']
+    tgt.client_hostname = hostname
     tgt.save!
     $LOG.debug("Generated ticket granting ticket '#{tgt.ticket}' for user" +
       " '#{tgt.username}' at '#{tgt.client_hostname}'" +
@@ -48,7 +47,7 @@ module CASServer::CAS
     st.service = service
     st.username = username
     st.granted_by_tgt_id = tgt.id
-    st.client_hostname = @env['HTTP_X_FORWARDED_FOR'] || @env['REMOTE_HOST'] || @env['REMOTE_ADDR']
+    st.client_hostname = hostname
     st.save!
     $LOG.debug("Generated service ticket '#{st.ticket}' for service '#{st.service}'" +
       " for user '#{st.username}' at '#{st.client_hostname}'")
@@ -63,7 +62,7 @@ module CASServer::CAS
     pt.username = pgt.service_ticket.username
     pt.granted_by_pgt_id = pgt.id
     pt.granted_by_tgt_id = pgt.service_ticket.granted_by_tgt.id
-    pt.client_hostname = @env['HTTP_X_FORWARDED_FOR'] || @env['REMOTE_HOST'] || @env['REMOTE_ADDR']
+    pt.client_hostname = hostname
     pt.save!
     $LOG.debug("Generated proxy ticket '#{pt.ticket}' for target service '#{pt.service}'" +
       " for user '#{pt.username}' at '#{pt.client_hostname}' using proxy-granting" +
@@ -324,4 +323,8 @@ module CASServer::CAS
   end
   module_function :clean_service_url
 
+  private
+  def hostname
+    @env['HTTP_X_FORWARDED_FOR'] || @env['REMOTE_HOST'] || @env['REMOTE_ADDR']
+  end
 end
