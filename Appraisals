@@ -21,3 +21,9 @@ appraise "rails32" do
   gem 'activesupport', '~> 3.2.0'
   gem 'activeresource', '~> 3.2.0'
 end
+
+appraise 'rails42' do
+  gem 'activerecord', '~> 4.2.0'
+  gem 'activesupport', '~> 4.2.0'
+  gem 'activeresource', '~> 4.0.0'
+end
