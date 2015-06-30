@@ -170,7 +170,7 @@ module CASServer::CAS
     if service.nil? or ticket.nil?
       error = Error.new(:INVALID_REQUEST, "Ticket or service parameter was missing in the request.")
       $LOG.warn "#{error.code} - #{error.message}"
-    elsif st = ServiceTicket.find_by_ticket(ticket)
+    elsif st = ServiceTicket.find_by_ticket(ticket) || ProxyTicket.find_by_ticket(ticket)
       if st.consumed?
         error = Error.new(:INVALID_TICKET, "Ticket '#{ticket}' has already been used up.")
         $LOG.warn "#{error.code} - #{error.message}"
