@@ -685,7 +685,11 @@ module CASServer
             @pgtiou = pgt.iou if pgt
           end
 
-          @extra_attributes = t.granted_by_tgt.extra_attributes || {}
+          @extra_attributes = if t.kind_of? CASServer::Model::ProxyTicket
+            TicketGrantingTicket.find(t.granted_by_tgt_id).extra_attributes
+          else
+            t.granted_by_tgt.extra_attributes || {}
+          end
         end
       else
         @success = false
